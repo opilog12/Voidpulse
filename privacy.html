@@ -1,96 +1,154 @@
+<!-- ========================= -->
+<!-- privacy.html -->
+<!-- ========================= -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - VoidPulse</title>
-  <link rel="icon" href="ico.png" type="image/png">
-  <style>
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #0a0014, #240046);
-  color: #e0b3ff;
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - VoidPulse</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-nav {
-  background: rgba(20, 0, 40, 0.8);
-  backdrop-filter: blur(6px);
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 15px 0;
-  box-shadow: 0 0 10px #8a2be2;
+
+body{
+    background:#050505;
+    color:#f3d9ff;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
 }
-nav a {
-  color: #d8b4fe;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at top left, rgba(180,0,255,0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(180,0,255,0.05), transparent 30%);
+    z-index:-3;
 }
-nav a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 10px #bb86fc;
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(180,0,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,0,255,0.04) 1px, transparent 1px);
+    background-size:35px 35px;
+    z-index:-2;
 }
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
+
+.lang-switcher{
+    position:absolute;
+    top:20px;
+    right:20px;
+    display:flex;
+    gap:10px;
 }
-h1 {
-  font-size: 3rem;
-  color: #bb86fc;
-  text-shadow: 0 0 10px #8a2be2;
+
+.lang-btn{
+    background:#111;
+    border:1px solid rgba(200,0,255,0.2);
+    color:#f0b3ff;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
-p {
-  font-size: 1.2rem;
-  color: #d8b4fe;
-  max-width: 600px;
-  margin-top: 20px;
+
+.lang-btn.active{
+    background:#c800ff;
+    color:#000;
 }
-.button {
-  background: linear-gradient(90deg, #6a00f4, #b5179e);
-  color: white;
-  padding: 12px 30px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 0 15px #8a2be2;
-  transition: 0.3s ease;
-  margin-top: 30px;
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding:120px 20px;
 }
-.button:hover {
-  box-shadow: 0 0 25px #d8b4fe;
-  transform: scale(1.05);
+
+.card{
+    background:rgba(10,10,10,0.75);
+    border:1px solid rgba(200,0,255,0.15);
+    border-radius:18px;
+    padding:35px;
 }
-footer {
-  text-align: center;
-  padding: 15px;
-  color: #a675ff;
-  font-size: 0.9rem;
-  opacity: 0.8;
+
+h1{
+    color:#d84dff;
+    margin-bottom:25px;
+    font-size:3rem;
+    text-shadow:0 0 15px #c800ff;
+}
+
+p{
+    line-height:1.9;
+    margin-bottom:20px;
 }
 </style>
 </head>
+
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="terms.html">Terms</a>
-    <a href="privacy.html">Privacy</a>
-  </nav>
-  <main>
-    <h1>Privacy Policy</h1>
-    <p><em>Last updated: October 13, 2025</em></p>
-    <p>VoidPulse does not collect or store personal data beyond what is necessary for functionality. Basic Discord user and server IDs may be temporarily processed to ensure proper operation.</p>
-    <p>All collected information is used only for bot functionality and is never shared or sold. For any questions, contact <strong>opilog12</strong> via Discord.</p>
-  </main>
-  <footer>Made by opilog12</footer>
+
+<div class="grid"></div>
+
+<div class="lang-switcher">
+    <button class="lang-btn active" id="btn-pl" onclick="setLanguage('pl')">PL</button>
+    <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+</div>
+
+<div class="container">
+<div class="card">
+
+<h1 id="title">Privacy Policy</h1>
+
+<p id="text1">
+VoidPulse nie przechowuje danych osobowych poza informacjami wymaganymi do działania bota.
+</p>
+
+<p id="text2">
+Wszystkie dane są wykorzystywane wyłącznie do funkcjonowania bota Discord.
+</p>
+
+</div>
+</div>
+
+<script>
+const translations = {
+    pl:{
+        title:"Polityka prywatności",
+        text1:"VoidPulse nie przechowuje danych osobowych poza informacjami wymaganymi do działania bota.",
+        text2:"Wszystkie dane są wykorzystywane wyłącznie do funkcjonowania bota Discord."
+    },
+    en:{
+        title:"Privacy Policy",
+        text1:"VoidPulse does not store personal data except information required for bot functionality.",
+        text2:"All data is used only for Discord bot functionality."
+    }
+};
+
+function setLanguage(lang){
+    localStorage.setItem('selectedLang', lang);
+
+    document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    document.getElementById('title').innerText = translations[lang].title;
+    document.getElementById('text1').innerText = translations[lang].text1;
+    document.getElementById('text2').innerText = translations[lang].text2;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLang') || 'pl';
+    setLanguage(savedLang);
+});
+</script>
+
 </body>
 </html>
