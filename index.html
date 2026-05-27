@@ -1,16 +1,15 @@
-<!-- ========================= -->
-<!-- index.html -->
-<!-- ========================= -->
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="icon" type="image/png" href="ico.png">
+
 <title>VoidPulse</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -66,8 +65,13 @@ body::before{
 }
 
 @keyframes float{
-    from{ transform:translateY(100vh); }
-    to{ transform:translateY(-10vh); }
+    from{
+        transform:translateY(100vh);
+    }
+
+    to{
+        transform:translateY(-10vh);
+    }
 }
 
 .lang-switcher{
@@ -86,6 +90,11 @@ body::before{
     border-radius:8px;
     cursor:pointer;
     font-weight:bold;
+    transition:0.2s;
+}
+
+.lang-btn:hover{
+    background:#1a1a1a;
 }
 
 .lang-btn.active{
@@ -153,6 +162,33 @@ footer{
     color:#d999ff;
     opacity:0.75;
 }
+
+@media(max-width:700px){
+
+    h1{
+        font-size:3rem;
+        letter-spacing:4px;
+    }
+
+    .subtitle{
+        font-size:1rem;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+        max-width:320px;
+    }
+
+    .lang-switcher{
+        top:15px;
+        right:15px;
+    }
+}
+
 </style>
 </head>
 
@@ -172,11 +208,17 @@ footer{
 <header>
 
 <div class="lang-switcher">
-    <button class="lang-btn active" id="btn-pl" onclick="setLanguage('pl')">PL</button>
-    <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn active" id="btn-pl" onclick="setLanguage('pl')">
+        PL
+    </button>
+
+    <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">
+        EN
+    </button>
 </div>
 
 <div class="hero">
+
     <h1>VOIDPULSE</h1>
 
     <div class="subtitle" id="subtitle">
@@ -185,12 +227,39 @@ footer{
     </div>
 
     <div class="buttons">
-        <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1426591705934598166">Dodaj bota</a>
-        <a class="btn" href="https://discord.gg/8x8dBFfZCP">Discord</a>
-        <a class="btn" href="terms.html" id="terms-btn">Terms</a>
-        <a class="btn" href="privacy.html" id="privacy-btn">Privacy</a>
-        <a class="btn" href="inne-projekty.html" id="other-btn">Inne projekty</a>
+
+        <a class="btn"
+           id="addbot-btn"
+           href="https://discord.com/oauth2/authorize?client_id=1426591705934598166">
+            Dodaj bota
+        </a>
+
+        <a class="btn"
+           id="discord-btn"
+           href="https://discord.gg/8x8dBFfZCP">
+            Discord
+        </a>
+
+        <a class="btn"
+           id="terms-btn"
+           href="terms.html">
+            Regulamin
+        </a>
+
+        <a class="btn"
+           id="privacy-btn"
+           href="privacy.html">
+            Prywatność
+        </a>
+
+        <a class="btn"
+           id="other-btn"
+           href="inne-projekty.html">
+            Inne projekty
+        </a>
+
     </div>
+
 </div>
 
 </header>
@@ -200,39 +269,65 @@ footer{
 </footer>
 
 <script>
+
 const translations = {
+
     pl:{
         subtitle:"Mroczny bot muzyczny Discord.<br>Potężny, szybki i stworzony dla klimatu.",
+        addBot:"Dodaj bota",
+        discord:"Discord",
         other:"Inne projekty",
         terms:"Regulamin",
         privacy:"Prywatność"
     },
+
     en:{
         subtitle:"A dark Discord music bot.<br>Powerful, fast and built for atmosphere.",
-        other:"Other projects",
+        addBot:"Add Bot",
+        discord:"Discord",
+        other:"Other Projects",
         terms:"Terms",
         privacy:"Privacy"
     }
+
 };
 
 function setLanguage(lang){
-    localStorage.setItem('selectedLang', lang);
 
-    document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-    document.getElementById('subtitle').innerHTML = translations[lang].subtitle;
-    document.getElementById('other-btn').innerText = translations[lang].other;
-    document.getElementById('terms-btn').innerText = translations[lang].terms;
-    document.getElementById('privacy-btn').innerText = translations[lang].privacy;
+    localStorage.setItem("selectedLang", lang);
 
     document.documentElement.lang = lang;
+
+    document.getElementById("btn-pl").classList.toggle("active", lang === "pl");
+    document.getElementById("btn-en").classList.toggle("active", lang === "en");
+
+    document.getElementById("subtitle").innerHTML =
+        translations[lang].subtitle;
+
+    document.getElementById("addbot-btn").innerText =
+        translations[lang].addBot;
+
+    document.getElementById("discord-btn").innerText =
+        translations[lang].discord;
+
+    document.getElementById("other-btn").innerText =
+        translations[lang].other;
+
+    document.getElementById("terms-btn").innerText =
+        translations[lang].terms;
+
+    document.getElementById("privacy-btn").innerText =
+        translations[lang].privacy;
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('selectedLang') || 'pl';
+window.onload = () => {
+
+    const savedLang =
+        localStorage.getItem("selectedLang") || "pl";
+
     setLanguage(savedLang);
-});
+};
+
 </script>
 
 </body>
