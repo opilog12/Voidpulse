@@ -187,7 +187,8 @@ footer{
     <div class="buttons">
         <a class="btn" href="TWÓJ_LINK_BOTA">Dodaj bota</a>
         <a class="btn" href="TWÓJ_DISCORD">Discord</a>
-        <a class="btn" href="privacy.html">Privacy</a>
+        <a class="btn" href="terms.html" id="terms-btn">Terms</a>
+        <a class="btn" href="privacy.html" id="privacy-btn">Privacy</a>
         <a class="btn" href="inne-projekty.html" id="other-btn">Inne projekty</a>
     </div>
 </div>
@@ -202,11 +203,15 @@ footer{
 const translations = {
     pl:{
         subtitle:"Mroczny bot muzyczny Discord.<br>Potężny, szybki i stworzony dla klimatu.",
-        other:"Inne projekty"
+        other:"Inne projekty",
+        terms:"Regulamin",
+        privacy:"Prywatność"
     },
     en:{
         subtitle:"A dark Discord music bot.<br>Powerful, fast and built for atmosphere.",
-        other:"Other projects"
+        other:"Other projects",
+        terms:"Terms",
+        privacy:"Privacy"
     }
 };
 
@@ -218,6 +223,8 @@ function setLanguage(lang){
 
     document.getElementById('subtitle').innerHTML = translations[lang].subtitle;
     document.getElementById('other-btn').innerText = translations[lang].other;
+    document.getElementById('terms-btn').innerText = translations[lang].terms;
+    document.getElementById('privacy-btn').innerText = translations[lang].privacy;
 
     document.documentElement.lang = lang;
 }
