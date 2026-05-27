@@ -1,0 +1,158 @@
+<!-- ========================= -->
+<!-- inne-projekty.html -->
+<!-- ========================= -->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inne Projekty</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:#f3d9ff;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at top left, rgba(180,0,255,0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(180,0,255,0.05), transparent 30%);
+    z-index:-3;
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(180,0,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,0,255,0.04) 1px, transparent 1px);
+    background-size:35px 35px;
+    z-index:-2;
+}
+
+.lang-switcher{
+    position:absolute;
+    top:20px;
+    right:20px;
+    display:flex;
+    gap:10px;
+}
+
+.lang-btn{
+    background:#111;
+    border:1px solid rgba(200,0,255,0.2);
+    color:#f0b3ff;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.lang-btn.active{
+    background:#c800ff;
+    color:#000;
+}
+
+.container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    gap:25px;
+}
+
+h1{
+    color:#d84dff;
+    font-size:4rem;
+    text-shadow:0 0 15px #c800ff;
+}
+
+.btn{
+    text-decoration:none;
+    background:#c800ff;
+    color:#000;
+    padding:16px 30px;
+    border-radius:14px;
+    font-weight:bold;
+    transition:0.2s;
+    width:260px;
+    text-align:center;
+}
+
+.btn:hover{
+    background:#e46dff;
+    transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+
+<div class="lang-switcher">
+    <button class="lang-btn active" id="btn-pl" onclick="setLanguage('pl')">PL</button>
+    <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+</div>
+
+<div class="container">
+
+<h1 id="title">INNE PROJEKTY</h1>
+
+<a class="btn" href="LINK_GOOGLE_DRIVE_VOIDTASK" id="btn1">
+Pobierz VoidTask
+</a>
+
+<a class="btn" href="LINK_GOOGLE_DRIVE_VOIDDOKU" id="btn2">
+Pobierz VoidDoku
+</a>
+
+</div>
+
+<script>
+const translations = {
+    pl:{
+        title:"INNE PROJEKTY",
+        btn1:"Pobierz VoidTask",
+        btn2:"Pobierz VoidDoku"
+    },
+    en:{
+        title:"OTHER PROJECTS",
+        btn1:"Download VoidTask",
+        btn2:"Download VoidDoku"
+    }
+};
+
+function setLanguage(lang){
+    localStorage.setItem('selectedLang', lang);
+
+    document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    document.getElementById('title').innerText = translations[lang].title;
+    document.getElementById('btn1').innerText = translations[lang].btn1;
+    document.getElementById('btn2').innerText = translations[lang].btn2;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLang') || 'pl';
+    setLanguage(savedLang);
+});
+</script>
+
+</body>
+</html>
