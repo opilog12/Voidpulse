@@ -1,97 +1,232 @@
+<!-- ========================= -->
+<!-- index.html -->
+<!-- ========================= -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoidPulse - Discord Music Bot</title>
-  <link rel="icon" href="ico.png" type="image/png">
-  <style>
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #0a0014, #240046);
-  color: #e0b3ff;
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="ico.png">
+<title>VoidPulse</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-nav {
-  background: rgba(20, 0, 40, 0.8);
-  backdrop-filter: blur(6px);
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 15px 0;
-  box-shadow: 0 0 10px #8a2be2;
+
+html{
+    scroll-behavior:smooth;
 }
-nav a {
-  color: #d8b4fe;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+
+body{
+    background:#050505;
+    color:#f3d9ff;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
 }
-nav a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 10px #bb86fc;
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at top left, rgba(180,0,255,0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(180,0,255,0.05), transparent 30%);
+    z-index:-3;
 }
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(180,0,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,0,255,0.04) 1px, transparent 1px);
+    background-size:35px 35px;
+    z-index:-2;
 }
-h1 {
-  font-size: 3rem;
-  color: #bb86fc;
-  text-shadow: 0 0 10px #8a2be2;
+
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-1;
 }
-p {
-  font-size: 1.2rem;
-  color: #d8b4fe;
-  max-width: 600px;
-  margin-top: 20px;
+
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#c800ff;
+    opacity:0.5;
+    animation:float linear infinite;
 }
-.button {
-  background: linear-gradient(90deg, #6a00f4, #b5179e);
-  color: white;
-  padding: 12px 30px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 0 15px #8a2be2;
-  transition: 0.3s ease;
-  margin-top: 30px;
+
+@keyframes float{
+    from{ transform:translateY(100vh); }
+    to{ transform:translateY(-10vh); }
 }
-.button:hover {
-  box-shadow: 0 0 25px #d8b4fe;
-  transform: scale(1.05);
+
+.lang-switcher{
+    position:absolute;
+    top:20px;
+    right:20px;
+    display:flex;
+    gap:10px;
 }
-footer {
-  text-align: center;
-  padding: 15px;
-  color: #a675ff;
-  font-size: 0.9rem;
-  opacity: 0.8;
+
+.lang-btn{
+    background:#111;
+    border:1px solid rgba(200,0,255,0.2);
+    color:#f0b3ff;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.lang-btn.active{
+    background:#c800ff;
+    color:#000;
+}
+
+header{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+    position:relative;
+}
+
+.hero{
+    max-width:900px;
+}
+
+h1{
+    font-size:5rem;
+    color:#d84dff;
+    letter-spacing:8px;
+    text-shadow:0 0 18px #c800ff;
+    margin-bottom:20px;
+}
+
+.subtitle{
+    color:#efc3ff;
+    line-height:1.8;
+    font-size:1.15rem;
+    margin-bottom:35px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:30px;
+}
+
+.btn{
+    text-decoration:none;
+    background:#c800ff;
+    color:#000;
+    padding:14px 28px;
+    border-radius:12px;
+    font-weight:bold;
+    transition:0.2s ease;
+    box-shadow:0 0 15px rgba(200,0,255,0.25);
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    background:#e46dff;
+}
+
+footer{
+    text-align:center;
+    padding:35px 15px;
+    color:#d999ff;
+    opacity:0.75;
 }
 </style>
 </head>
+
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="terms.html">Terms</a>
-    <a href="privacy.html">Privacy</a>
-  </nav>
-  <main>
-    <h1>VoidPulse</h1>
-    <p>From the depths of silence comes the rhythm of the void.<br>
-    A Discord music bot that brings dark, cosmic beats to your world.</p>
-    <a href="https://discord.com/oauth2/authorize?client_id=1426591705934598166&permissions=8&integration_type=0&scope=bot" class="button">Invite VoidPulse</a>
-    <a href="https://discord.gg/P8u3anHwkm" class="button"> Join official discord</a>
-  </main>
-  <footer>Made by opilog12</footer>
+
+<div class="grid"></div>
+
+<div class="particles">
+    <div class="particle" style="left:10%; animation-duration:12s;"></div>
+    <div class="particle" style="left:20%; animation-duration:18s;"></div>
+    <div class="particle" style="left:35%; animation-duration:14s;"></div>
+    <div class="particle" style="left:50%; animation-duration:20s;"></div>
+    <div class="particle" style="left:70%; animation-duration:16s;"></div>
+    <div class="particle" style="left:85%; animation-duration:13s;"></div>
+</div>
+
+<header>
+
+<div class="lang-switcher">
+    <button class="lang-btn active" id="btn-pl" onclick="setLanguage('pl')">PL</button>
+    <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+</div>
+
+<div class="hero">
+    <h1>VOIDPULSE</h1>
+
+    <div class="subtitle" id="subtitle">
+        Mroczny bot muzyczny Discord.<br>
+        Potężny, szybki i stworzony dla klimatu.
+    </div>
+
+    <div class="buttons">
+        <a class="btn" href="TWÓJ_LINK_BOTA">Dodaj bota</a>
+        <a class="btn" href="TWÓJ_DISCORD">Discord</a>
+        <a class="btn" href="privacy.html">Privacy</a>
+        <a class="btn" href="inne-projekty.html" id="other-btn">Inne projekty</a>
+    </div>
+</div>
+
+</header>
+
+<footer>
+© 2026 VoidPulse - by opilog12
+</footer>
+
+<script>
+const translations = {
+    pl:{
+        subtitle:"Mroczny bot muzyczny Discord.<br>Potężny, szybki i stworzony dla klimatu.",
+        other:"Inne projekty"
+    },
+    en:{
+        subtitle:"A dark Discord music bot.<br>Powerful, fast and built for atmosphere.",
+        other:"Other projects"
+    }
+};
+
+function setLanguage(lang){
+    localStorage.setItem('selectedLang', lang);
+
+    document.getElementById('btn-pl').classList.toggle('active', lang === 'pl');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    document.getElementById('subtitle').innerHTML = translations[lang].subtitle;
+    document.getElementById('other-btn').innerText = translations[lang].other;
+
+    document.documentElement.lang = lang;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLang') || 'pl';
+    setLanguage(savedLang);
+});
+</script>
+
 </body>
 </html>
