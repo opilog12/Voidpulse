@@ -60,6 +60,11 @@ body::before{
     border-radius:8px;
     cursor:pointer;
     font-weight:bold;
+    transition:0.2s;
+}
+
+.lang-btn:hover{
+    transform:translateY(-2px);
 }
 
 .lang-btn.active{
@@ -79,6 +84,7 @@ body::before{
     border:1px solid rgba(200,0,255,0.15);
     border-radius:18px;
     padding:35px;
+    backdrop-filter:blur(8px);
 }
 
 h1{
@@ -88,9 +94,25 @@ h1{
     text-shadow:0 0 15px #c800ff;
 }
 
-p{
+h2{
+    margin-top:30px;
+    margin-bottom:15px;
+    color:#e37dff;
+    font-size:1.4rem;
+}
+
+p, li{
     line-height:1.9;
+    color:#f0d9ff;
+}
+
+ul{
+    padding-left:25px;
     margin-bottom:20px;
+}
+
+.section{
+    margin-bottom:25px;
 }
 </style>
 </head>
@@ -107,15 +129,62 @@ p{
 <div class="container">
 <div class="card">
 
-<h1 id="title">Privacy Policy</h1>
+<h1 id="title">Polityka prywatności</h1>
+
+<div class="section">
+<h2 id="s1">1. Gromadzenie danych</h2>
 
 <p id="text1">
-VoidPulse nie przechowuje danych osobowych poza informacjami wymaganymi do działania bota.
+VoidPulse może przechowywać wyłącznie dane wymagane do poprawnego działania bota Discord.
 </p>
 
+<ul id="list1">
+<li>ID użytkownika Discord</li>
+<li>ID serwera Discord</li>
+<li>Ustawienia konfiguracyjne serwera</li>
+<li>Dane techniczne wymagane do działania funkcji bota</li>
+</ul>
+</div>
+
+<div class="section">
+<h2 id="s2">2. Wykorzystanie danych</h2>
+
 <p id="text2">
-Wszystkie dane są wykorzystywane wyłącznie do funkcjonowania bota Discord.
+Wszystkie dane są wykorzystywane wyłącznie w celu zapewnienia działania funkcji bota oraz poprawy stabilności i bezpieczeństwa usług.
 </p>
+</div>
+
+<div class="section">
+<h2 id="s3">3. Udostępnianie danych</h2>
+
+<p id="text3">
+VoidPulse nie sprzedaje ani nie udostępnia danych użytkowników osobom trzecim, chyba że wymaga tego obowiązujące prawo.
+</p>
+</div>
+
+<div class="section">
+<h2 id="s4">4. Bezpieczeństwo</h2>
+
+<p id="text4">
+Podejmowane są rozsądne działania mające na celu zabezpieczenie danych przed nieautoryzowanym dostępem, utratą lub nadużyciem.
+</p>
+</div>
+
+<div class="section">
+<h2 id="s5">5. Usuwanie danych</h2>
+
+<p id="text5">
+Użytkownik lub administrator serwera może poprosić o usunięcie danych związanych z korzystaniem z bota.
+</p>
+</div>
+
+<div class="section">
+<h2 id="s6">6. Zmiany polityki prywatności</h2>
+
+<p id="text6">
+Polityka prywatności może zostać zmieniona w dowolnym momencie. Dalsze korzystanie z bota oznacza akceptację zmian.
+</p>
+</div>
 
 </div>
 </div>
@@ -124,15 +193,73 @@ Wszystkie dane są wykorzystywane wyłącznie do funkcjonowania bota Discord.
 const translations = {
     pl:{
         title:"Polityka prywatności",
-        text1:"VoidPulse nie przechowuje danych osobowych poza informacjami wymaganymi do działania bota.",
-        text2:"Wszystkie dane są wykorzystywane wyłącznie do funkcjonowania bota Discord."
+
+        s1:"1. Gromadzenie danych",
+        text1:"VoidPulse może przechowywać wyłącznie dane wymagane do poprawnego działania bota Discord.",
+
+        list1:[
+            "ID użytkownika Discord",
+            "ID serwera Discord",
+            "Ustawienia konfiguracyjne serwera",
+            "Dane techniczne wymagane do działania funkcji bota"
+        ],
+
+        s2:"2. Wykorzystanie danych",
+        text2:"Wszystkie dane są wykorzystywane wyłącznie w celu zapewnienia działania funkcji bota oraz poprawy stabilności i bezpieczeństwa usług.",
+
+        s3:"3. Udostępnianie danych",
+        text3:"VoidPulse nie sprzedaje ani nie udostępnia danych użytkowników osobom trzecim, chyba że wymaga tego obowiązujące prawo.",
+
+        s4:"4. Bezpieczeństwo",
+        text4:"Podejmowane są rozsądne działania mające na celu zabezpieczenie danych przed nieautoryzowanym dostępem, utratą lub nadużyciem.",
+
+        s5:"5. Usuwanie danych",
+        text5:"Użytkownik lub administrator serwera może poprosić o usunięcie danych związanych z korzystaniem z bota.",
+
+        s6:"6. Zmiany polityki prywatności",
+        text6:"Polityka prywatności może zostać zmieniona w dowolnym momencie. Dalsze korzystanie z bota oznacza akceptację zmian."
     },
+
     en:{
         title:"Privacy Policy",
-        text1:"VoidPulse does not store personal data except information required for bot functionality.",
-        text2:"All data is used only for Discord bot functionality."
+
+        s1:"1. Data Collection",
+        text1:"VoidPulse may store only the data required for proper Discord bot functionality.",
+
+        list1:[
+            "Discord user IDs",
+            "Discord server IDs",
+            "Server configuration settings",
+            "Technical data required for bot functionality"
+        ],
+
+        s2:"2. Data Usage",
+        text2:"All collected data is used solely to provide bot functionality and improve service stability and security.",
+
+        s3:"3. Data Sharing",
+        text3:"VoidPulse does not sell or share user data with third parties unless required by applicable law.",
+
+        s4:"4. Security",
+        text4:"Reasonable measures are taken to protect stored data from unauthorized access, loss, or misuse.",
+
+        s5:"5. Data Removal",
+        text5:"Users or server administrators may request deletion of data related to their use of the bot.",
+
+        s6:"6. Changes to Privacy Policy",
+        text6:"This Privacy Policy may be updated at any time. Continued use of the bot means acceptance of the updated policy."
     }
 };
+
+function updateList(id, items){
+    const list = document.getElementById(id);
+    list.innerHTML = "";
+
+    items.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+    });
+}
 
 function setLanguage(lang){
     localStorage.setItem('selectedLang', lang);
@@ -141,8 +268,25 @@ function setLanguage(lang){
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
     document.getElementById('title').innerText = translations[lang].title;
+
+    document.getElementById('s1').innerText = translations[lang].s1;
     document.getElementById('text1').innerText = translations[lang].text1;
+    updateList('list1', translations[lang].list1);
+
+    document.getElementById('s2').innerText = translations[lang].s2;
     document.getElementById('text2').innerText = translations[lang].text2;
+
+    document.getElementById('s3').innerText = translations[lang].s3;
+    document.getElementById('text3').innerText = translations[lang].text3;
+
+    document.getElementById('s4').innerText = translations[lang].s4;
+    document.getElementById('text4').innerText = translations[lang].text4;
+
+    document.getElementById('s5').innerText = translations[lang].s5;
+    document.getElementById('text5').innerText = translations[lang].text5;
+
+    document.getElementById('s6').innerText = translations[lang].s6;
+    document.getElementById('text6').innerText = translations[lang].text6;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
